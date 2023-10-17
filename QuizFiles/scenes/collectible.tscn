@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpn6mh7o7bujq"]
+
+[ext_resource type="Script" path="res://scripts/collectible.gd" id="1_smjw5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nx0ik"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_uv3et"]
+material = SubResource("StandardMaterial3D_nx0ik")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_222lt"]
+radius = 1.0
+
+[node name="Collectible" type="Area3D"]
+script = ExtResource("1_smjw5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("TorusMesh_uv3et")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_222lt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

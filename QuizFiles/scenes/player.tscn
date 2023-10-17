@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5ehj2ndpglfd"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_w1d44"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4px8h"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sx2jv"]
+material = SubResource("StandardMaterial3D_4px8h")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fpfgc"]
+size = Vector3(1.25, 1.5, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gfnhh"]
+direction = Vector3(0, 0, 1)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_l55r3"]
+radius = 0.25
+height = 0.5
+
+[node name="playerModel" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1_w1d44")
+
+[node name="bodyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_sx2jv")
+
+[node name="headMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 1.43969, 0, 0.732415, -0.485896)
+mesh = SubResource("BoxMesh_sx2jv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.246387, 0)
+shape = SubResource("BoxShape3D_fpfgc")
+
+[node name="Camera3D" type="Camera3D" parent="." groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 0.801661, 0.597779, 0, -0.597779, 0.801661, 0, 4.31215, 4.97697)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.891669)
+amount = 4
+lifetime = 2.41
+process_material = SubResource("ParticleProcessMaterial_gfnhh")
+draw_pass_1 = SubResource("SphereMesh_l55r3")

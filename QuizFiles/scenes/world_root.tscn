@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://7foj0pbstp31"]
+
+[ext_resource type="PackedScene" uid="uid://b5ehj2ndpglfd" path="res://scenes/player.tscn" id="1_cokqq"]
+[ext_resource type="Script" path="res://scripts/world_root.gd" id="1_dhufk"]
+[ext_resource type="PackedScene" uid="uid://bplamsm8ecej5" path="res://scenes/arena.tscn" id="2_lvahp"]
+[ext_resource type="PackedScene" uid="uid://bpn6mh7o7bujq" path="res://scenes/collectible.tscn" id="3_huv6i"]
+[ext_resource type="PackedScene" uid="uid://cmyj2acm5crrk" path="res://scenes/pause.tscn" id="4_163h6"]
+[ext_resource type="PackedScene" uid="uid://do3ca1xt2usvj" path="res://scenes/hud_layer.tscn" id="5_anehu"]
+
+[node name="WorldRoot" type="Node3D"]
+script = ExtResource("1_dhufk")
+collectable = ExtResource("3_huv6i")
+
+[node name="playerModel" parent="." instance=ExtResource("1_cokqq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0656769, 0, -0.199756)
+pause_screen = ExtResource("4_163h6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.448102, 0.893982, 0, -0.893982, 0.448102, -31.3057, 61.8024, 63.0905)
+shadow_enabled = true
+
+[node name="Arena" parent="." instance=ExtResource("2_lvahp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Collectible" parent="." instance=ExtResource("3_huv6i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0983427, -0.0553086, -3.99464)
+
+[node name="Pause" parent="." instance=ExtResource("4_163h6")]
+process_mode = 2
+visible = false
+
+[node name="mainHud" parent="." instance=ExtResource("5_anehu")]
+
+[node name="colContainer" type="Node3D" parent="."]

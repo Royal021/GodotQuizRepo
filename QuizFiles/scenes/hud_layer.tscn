@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://do3ca1xt2usvj"]
+
+[ext_resource type="Script" path="res://scripts/hudLayer.gd" id="1_x8g6w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sar6r"]
+font_size = 30
+
+[node name="hudLayer" type="CanvasLayer"]
+script = ExtResource("1_x8g6w")
+
+[node name="grabbed" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Points:   0"
+label_settings = SubResource("LabelSettings_sar6r")
+
+[node name="available" type="Label" parent="."]
+offset_right = 265.0
+offset_bottom = 45.0
+text = "Items Available:   0"
+label_settings = SubResource("LabelSettings_sar6r")
